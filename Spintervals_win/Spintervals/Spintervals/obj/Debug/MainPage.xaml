@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="Spintervals.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Spintervals"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Name="TitleFont">
+            <Style.Setters>
+                <Setter Property="FontWeight" Value="Thin"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style.Setters>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="SPINTERVALS" FontSize="16" Grid.Row="0"/>
+        <TextBlock Text="play song" FontSize="72" Style="{StaticResource TitleFont}" Grid.Row="1"/>
+
+        <Image Source="Images/drones.jpg" Grid.Row="2"/>
+
+        <Canvas x:ConnectionId='1' Grid.ColumnSpan="3" Grid.Row="3" Name="IntervalCanvas"                                          Margin="20,0,20,0"/>
+        <MediaElement Source="Assets/04CoughSyrup.mp3" AudioCategory="BackgroundCapableMedia" Name="songMediaElement" Grid.Row="2" AutoPlay="False"/>
+        <Grid Grid.Row="4" Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Slider Name="timelineSlider" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource MusicSlider}"/>
+            <TextBlock Text="0:00" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Text="3:33" Grid.Row="1" Grid.Column="2" TextAlignment="Right"/>
+        </Grid>
+        
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button HorizontalAlignment="Center" Grid.Column="0" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
+                <Image Source="Images/rew.png" />
+            </Button>
+            <Button x:ConnectionId='2' HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource ButtonStyle1}" Width="55" Height="55" Name="PlayButton"                         >
+                <Image Source="Images/play.png" />
+            </Button>
+            <Button HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
+                <Image Source="Images/ff.png" />
+            </Button>
+        </Grid>
+    </Grid>
+</Page>
+
