@@ -1,1 +1,1 @@
-c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Spintervals.csproj;neutral
+C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Spintervals.csproj;neutral

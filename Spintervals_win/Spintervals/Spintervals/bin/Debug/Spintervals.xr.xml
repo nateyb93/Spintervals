@@ -16,12 +16,14 @@
       <RootProperty Name="Color" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Style" />
       <RootProperty Name="Width" />
       <RootProperty Name="Height" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="Name" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
@@ -45,6 +47,9 @@
       <RootProperty Name="IsThumbToolTipEnabled" />
       <RootProperty Name="Name" />
       <RootProperty Name="Style" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootEvent Name="ValueChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.UIElement">
       <RootProperty Name="ManipulationMode" />
@@ -65,6 +70,7 @@
       <RootProperty Name="Background" />
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumn" />
@@ -171,27 +177,53 @@
       <RootProperty Name="Resources" />
       <RootProperty Name="Content" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.ImageBrush">
+      <RootProperty Name="ImageSource" />
+      <RootProperty Name="Stretch" />
+      <RootProperty Name="Opacity" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="FontWeight" />
       <RootProperty Name="FontFamily" />
-      <RootProperty Name="Text" />
       <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Text" />
       <RootProperty Name="Style" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="TextAlignment" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Image">
-      <RootProperty Name="Source" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Canvas">
-      <RootProperty Name="Name" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Margin" />
-      <RootEvent Name="SizeChanged" />
+      <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MediaElement">
       <RootProperty Name="Name" />
       <RootProperty Name="Source" />
       <RootProperty Name="AudioCategory" />
       <RootProperty Name="AutoPlay" />
+      <RootEvent Name="MediaOpened" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Stretch" />
+      <RootProperty Name="HorizontalAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Canvas">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Height" />
+      <RootEvent Name="SizeChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBoxItem">
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Spintervals.MainPage" />
   </Roots.RootTypes>

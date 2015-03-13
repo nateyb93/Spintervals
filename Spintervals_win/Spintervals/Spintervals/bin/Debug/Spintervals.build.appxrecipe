@@ -7,70 +7,73 @@
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>c758902c-9df7-4381-b7e3-566bbfad7d79</PackageIdentityName>
-    <IntermediateOutputPath>c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\obj\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\obj\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\Spintervals.exe">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\Spintervals.exe">
       <PackagePath>Spintervals.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\04CoughSyrup.mp3">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\04CoughSyrup.mp3">
       <PackagePath>Assets\04CoughSyrup.mp3</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\Logo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\Muse - Psycho.mp3">
+      <PackagePath>Assets\Muse - Psycho.mp3</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\SmallLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\SmallLogo.scale-240.png">
       <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\SplashScreen.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\SplashScreen.scale-240.png">
       <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\Square71x71Logo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\Square71x71Logo.scale-240.png">
       <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\StoreLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\StoreLogo.scale-240.png">
       <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\WideLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Assets\WideLogo.scale-240.png">
       <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\ff.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\ff.png">
       <PackagePath>Images\ff.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\pause.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\pause.png">
       <PackagePath>Images\pause.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\play.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\play.png">
       <PackagePath>Images\play.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\rew.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\rew.png">
       <PackagePath>Images\rew.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\drones.jpg">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\drones.jpg">
       <PackagePath>Images\drones.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\Spintervals.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\Spintervals.xr.xml">
       <PackagePath>Spintervals.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
