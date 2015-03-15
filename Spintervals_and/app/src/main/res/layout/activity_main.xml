@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="INTERVAL"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView android:layout_height="275dp"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <SurfaceView
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"/>
+    <SeekBar
+        android:layout_width="305dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/sb_songProgress"/>
+
+    <LinearLayout android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/timeText"
+        android:layout_marginBottom="20dp">
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:text="0:00"
+            android:textSize="10dp"
+            android:id="@+id/tv_currentProgress"/>
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="10dp"
+            android:gravity="right"
+            android:text="3:33"
+            android:textSize="10dp"
+            android:id="@+id/tv_fullLength"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="100">
+
+        <ImageButton android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_weight="33"
+            android:background="@drawable/previous"
+            android:id="@+id/button_previous"
+            android:onClick="operation_click"/>
+
+        <ImageButton android:layout_height="50dp"
+            android:layout_width="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="33"
+            android:background="@drawable/pause"
+            android:id="@+id/button_pause"
+            android:onClick="operation_click"/>
+
+        <ImageButton android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_weight="33"
+            android:background="@drawable/next"
+            android:id="@+id/button_next"
+            android:onClick="operation_click"/>
+
+    </LinearLayout>
+
+</LinearLayout>
