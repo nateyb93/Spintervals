@@ -61,14 +61,32 @@
     <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\rew.png">
       <PackagePath>Images\rew.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Toolkit.Content\ApplicationBar.Cancel.png">
+      <PackagePath>Toolkit.Content\ApplicationBar.Cancel.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Toolkit.Content\ApplicationBar.Check.png">
+      <PackagePath>Toolkit.Content\ApplicationBar.Check.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Toolkit.Content\ApplicationBar.Delete.png">
+      <PackagePath>Toolkit.Content\ApplicationBar.Delete.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Toolkit.Content\ApplicationBar.Select.png">
+      <PackagePath>Toolkit.Content\ApplicationBar.Select.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\Images\drones.jpg">
       <PackagePath>Images\drones.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\README_FIRST.txt">
+      <PackagePath>README_FIRST.txt</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\NewIntervalDialog.xbf">
+      <PackagePath>NewIntervalDialog.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\documents\GitHub\Spintervals\Spintervals_win\Spintervals\Spintervals\bin\Debug\Spintervals.xr.xml">
       <PackagePath>Spintervals.xr.xml</PackagePath>

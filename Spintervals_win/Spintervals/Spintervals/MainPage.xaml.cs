@@ -27,6 +27,10 @@ namespace Spintervals
     {
         private bool _isPlaying = false;
 
+        private bool _intervalTapped = false;
+
+        private SongData _currentSong;
+
         private DispatcherTimer _timer;
 
         public MainPage()
@@ -34,8 +38,22 @@ namespace Spintervals
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            ///Handle page load events here
+            this.Loaded += (s, e) =>
+            {
+                _currentSong = new SongData();
+                _currentSong.Path = "ms-appx:/Assets/Muse - Psycho.mp3";
+
+                IntervalListView.ItemsSource = _currentSong.IntervalQueues;
+                songMediaElement.Source = new Uri(_currentSong.Path);
+                setDialogCancel();
+                setDialogSave();
+            };
         }
 
+        /// <summary>
+        /// Initializes the timer object
+        /// </summary>
         private void _initTimer()
         {
             _timer = new DispatcherTimer();
@@ -43,11 +61,31 @@ namespace Spintervals
             _timer.Tick += _timer_Tick;
         }
 
+        /// <summary>
+        /// Event handler for timer's tick event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _timer_Tick(object sender, object e)
         {
             timelineSlider.Value = songMediaElement.Position.TotalSeconds;
             PositionTextBlock.Text =
                 songMediaElement.Position.Minutes.ToString("0") + ":" + songMediaElement.Position.Seconds.ToString("00");
+
+            for (int i = 0; i < _currentSong.IntervalQueues.Count; i++)
+            {
+                Interval it = _currentSong.IntervalQueues[i];
+                if(i != _currentSong.IntervalQueues.Count - 1)
+                {
+                    Interval nextIt = _currentSong.IntervalQueues[i + 1];
+                    if (songMediaElement.Position.TotalSeconds >= it.SongPosition
+                        && songMediaElement.Position.TotalSeconds < nextIt.SongPosition)
+                    {
+                        _intervalTapped = false;
+                        IntervalListView.SelectedIndex = i;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -77,11 +115,49 @@ namespace Spintervals
             // this event is handled for you.
         }
 
+        private void _redraw()
+        {
+            IntervalCanvas.Children.Clear();
+            int totalDuration = (int)songMediaElement.Position.TotalSeconds;
+            int pos = 0;
+            for (int i = 0; i < _currentSong.IntervalQueues.Count; i++)
+            {
+                Interval iv = _currentSong.IntervalQueues[i];
+                if(i == _currentSong.IntervalQueues.Count - 1)
+                {
+                    int intensity = iv.Intensity;
+                    while (pos < IntervalCanvas.ActualWidth)
+                    {
+                        double h = IntervalCanvas.ActualHeight * ((double)intensity / 20.0);
+                        DrawRect(pos, 2, h, iv.Color);
+                        pos += 3;
+                    }
+                }
+
+                else
+                {
+                    double xLim =
+                        (double)_currentSong.IntervalQueues[i + 1].SongPosition / songMediaElement.NaturalDuration.TimeSpan.TotalSeconds
+                        * IntervalCanvas.ActualWidth;
+
+                    int intensity = iv.Intensity;
+                    while (pos < xLim)
+                    {
+                        double h = IntervalCanvas.ActualHeight * ((double)intensity / 20);
+                        DrawRect(pos, 2, h, iv.Color);
+                        pos += 3;
+                    }
+                }
+                    
+            }
+        }
+
         /// <summary>
         /// Draws random lines to test canvases
         /// </summary>
         private void DrawRandomLines()
         {
+            IntervalCanvas.Children.Clear();
             Random rand = new Random();
             for (int i = 1; i < (int)IntervalCanvas.ActualWidth; )
             {
@@ -132,7 +208,7 @@ namespace Spintervals
         /// <param name="y">vertical position of rectanlge</param>
         /// <param name="w">width of rectangle</param>
         /// <param name="h">height of rectangle</param>
-        private void DrawRect(int x, int w, int h, Color c)
+        private void DrawRect(int x, int w, double h, Color c)
         {
             Rectangle rect = new Rectangle();
             Canvas.SetLeft(rect, x);
@@ -163,27 +239,75 @@ namespace Spintervals
         {
             if(!_isPlaying)
             {
-                Image i = new Image();
-                i.Source = new BitmapImage(new Uri("ms-appx:/Images/pause.png"));
-                i.Stretch = Stretch.UniformToFill;
-                i.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-                PlayButton.Content = i;
-                _isPlaying = true;
-                songMediaElement.Play();
-                _timer.Start();
+                PlayMedia();
             }
             else
             {
-                Image i = new Image();
-                i.Source = new BitmapImage(new Uri("ms-appx:/Images/play.png"));
-                i.Stretch = Stretch.UniformToFill;
-                i.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-                PlayButton.Content = i;
-                _isPlaying = false;
-                songMediaElement.Pause();
-                _timer.Stop();
+                PauseMedia();
             }
             
+        }
+
+        private void PauseMedia()
+        {
+            Image i = new Image();
+            i.Source = new BitmapImage(new Uri("ms-appx:/Images/play.png"));
+            i.Stretch = Stretch.UniformToFill;
+            i.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+            PlayButton.Content = i;
+            _isPlaying = false;
+            songMediaElement.Pause();
+            _timer.Stop();
+        }
+
+        private void PlayMedia()
+        {
+            Image i = new Image();
+            i.Source = new BitmapImage(new Uri("ms-appx:/Images/pause.png"));
+            i.Stretch = Stretch.UniformToFill;
+            i.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+            PlayButton.Content = i;
+            _isPlaying = true;
+            songMediaElement.Play();
+            _timer.Start();
+        }
+
+        /// <summary>
+        /// Sets the action for the dialog's cancel button
+        /// </summary>
+        private void setDialogCancel()
+        {
+            DialogNewInterval.SetCancelButtonClick((s, e) =>
+            {
+                FlyoutNewInterval.Hide();
+            });
+        }
+
+        /// <summary>
+        /// Sets the action for the dialog's save button
+        /// </summary>
+        private void setDialogSave()
+        {
+            DialogNewInterval.SetSaveButtonClick((s, e) =>
+            {
+                //add interval with the information from the dialog
+                _currentSong.AddInterval(new Interval()
+                {
+                    SongPosition = (int)songMediaElement.Position.TotalSeconds,
+                    IntervalName = DialogNewInterval.IntervalName,
+                    Color = DialogNewInterval.Color,
+                    Intensity = DialogNewInterval.Intensity
+                });
+
+                _currentSong.IntervalQueues.Sort((it1, it2) => it1.SongPosition.CompareTo(it2.SongPosition));
+                int idx = IntervalListView.SelectedIndex;
+                NotifyDataChanged();
+                IntervalListView.SelectedIndex = idx;
+                _redraw();
+
+                DialogNewInterval.ClearData();
+                FlyoutNewInterval.Hide();
+            });
         }
 
         /// <summary>
@@ -209,5 +333,53 @@ namespace Spintervals
             _initTimer();
             DrawRandomLines();
         }
+
+        private void AddIntervalButton_Click(object sender, RoutedEventArgs e)
+        {
+            PauseMedia();
+        }
+
+        private void IntervalListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (IntervalListView.SelectedIndex != -1)
+            {
+                Interval i = _currentSong.IntervalQueues[IntervalListView.SelectedIndex];
+                songMediaElement.Position = TimeSpan.FromSeconds(i.SongPosition);
+            }
+        }
+
+        private void IntervalListView_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            if (e.HoldingState == Windows.UI.Input.HoldingState.Started)
+            {
+                MenuFlyout mf = new MenuFlyout();
+                MenuFlyoutItem mfi = new MenuFlyoutItem {
+                    Text = "Delete"
+                };
+
+                mfi.Click += (s, ev) =>
+                {
+                    TextBlock o = e.OriginalSource as TextBlock;
+                    
+                    Interval item = (Interval)(sender as FrameworkElement).DataContext;
+                    _currentSong.RemoveInterval(item);
+                    NotifyDataChanged();
+                };
+
+                mf.Items.Add(mfi);
+
+                mf.ShowAt(IntervalListView);
+
+
+            }
+        }
+
+        private void NotifyDataChanged()
+        {
+            IntervalListView.ItemsSource = null;
+            IntervalListView.ItemsSource = _currentSong.IntervalQueues;
+            _redraw();
+        }
+
     }
 }

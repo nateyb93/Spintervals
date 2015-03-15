@@ -124,21 +124,29 @@ namespace Spintervals.Spintervals_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
+            _typeNameTable = new string[10];
             _typeNameTable[0] = "Windows.UI.Text.FontWeight";
             _typeNameTable[1] = "System.ValueType";
             _typeNameTable[2] = "Object";
-            _typeNameTable[3] = "Spintervals.MainPage";
-            _typeNameTable[4] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[5] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "Spintervals.NewIntervalDialog";
+            _typeNameTable[4] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[5] = "String";
+            _typeNameTable[6] = "Windows.UI.Color";
+            _typeNameTable[7] = "Int32";
+            _typeNameTable[8] = "Spintervals.MainPage";
+            _typeNameTable[9] = "Windows.UI.Xaml.Controls.Page";
 
-            _typeTable = new global::System.Type[6];
+            _typeTable = new global::System.Type[10];
             _typeTable[0] = typeof(global::Windows.UI.Text.FontWeight);
             _typeTable[1] = typeof(global::System.ValueType);
             _typeTable[2] = typeof(global::System.Object);
-            _typeTable[3] = typeof(global::Spintervals.MainPage);
-            _typeTable[4] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::Spintervals.NewIntervalDialog);
+            _typeTable[4] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[5] = typeof(global::System.String);
+            _typeTable[6] = typeof(global::Windows.UI.Color);
+            _typeTable[7] = typeof(global::System.Int32);
+            _typeTable[8] = typeof(global::Spintervals.MainPage);
+            _typeTable[9] = typeof(global::Windows.UI.Xaml.Controls.Page);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -173,7 +181,8 @@ namespace Spintervals.Spintervals_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_3_MainPage() { return new global::Spintervals.MainPage(); }
+        private object Activate_3_NewIntervalDialog() { return new global::Spintervals.NewIntervalDialog(); }
+        private object Activate_8_MainPage() { return new global::Spintervals.MainPage(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -199,18 +208,42 @@ namespace Spintervals.Spintervals_XamlTypeInfo
                 xamlType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 3:   //  Spintervals.MainPage
-                userType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_3_MainPage;
+            case 3:   //  Spintervals.NewIntervalDialog
+                userType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_3_NewIntervalDialog;
+                userType.AddMemberName("IntervalName");
+                userType.AddMemberName("Color");
+                userType.AddMemberName("Intensity");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 4:   //  Windows.UI.Xaml.Controls.Page
+            case 4:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 5:   //  Windows.UI.Xaml.Controls.UserControl
+            case 5:   //  String
+                xamlType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  Windows.UI.Color
+                userType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 7:   //  Int32
+                xamlType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 8:   //  Spintervals.MainPage
+                userType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_MainPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  Windows.UI.Xaml.Controls.Page
                 xamlType = new global::Spintervals.Spintervals_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -218,11 +251,63 @@ namespace Spintervals.Spintervals_XamlTypeInfo
         }
 
 
+        private object get_0_NewIntervalDialog_IntervalName(object instance)
+        {
+            var that = (global::Spintervals.NewIntervalDialog)instance;
+            return that.IntervalName;
+        }
+        private void set_0_NewIntervalDialog_IntervalName(object instance, object Value)
+        {
+            var that = (global::Spintervals.NewIntervalDialog)instance;
+            that.IntervalName = (global::System.String)Value;
+        }
+        private object get_1_NewIntervalDialog_Color(object instance)
+        {
+            var that = (global::Spintervals.NewIntervalDialog)instance;
+            return that.Color;
+        }
+        private void set_1_NewIntervalDialog_Color(object instance, object Value)
+        {
+            var that = (global::Spintervals.NewIntervalDialog)instance;
+            that.Color = (global::Windows.UI.Color)Value;
+        }
+        private object get_2_NewIntervalDialog_Intensity(object instance)
+        {
+            var that = (global::Spintervals.NewIntervalDialog)instance;
+            return that.Intensity;
+        }
+        private void set_2_NewIntervalDialog_Intensity(object instance, object Value)
+        {
+            var that = (global::Spintervals.NewIntervalDialog)instance;
+            that.Intensity = (global::System.Int32)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::Spintervals.Spintervals_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "Spintervals.NewIntervalDialog.IntervalName":
+                userType = (global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Spintervals.NewIntervalDialog");
+                xamlMember = new global::Spintervals.Spintervals_XamlTypeInfo.XamlMember(this, "IntervalName", "String");
+                xamlMember.Getter = get_0_NewIntervalDialog_IntervalName;
+                xamlMember.Setter = set_0_NewIntervalDialog_IntervalName;
+                break;
+            case "Spintervals.NewIntervalDialog.Color":
+                userType = (global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Spintervals.NewIntervalDialog");
+                xamlMember = new global::Spintervals.Spintervals_XamlTypeInfo.XamlMember(this, "Color", "Windows.UI.Color");
+                xamlMember.Getter = get_1_NewIntervalDialog_Color;
+                xamlMember.Setter = set_1_NewIntervalDialog_Color;
+                break;
+            case "Spintervals.NewIntervalDialog.Intensity":
+                userType = (global::Spintervals.Spintervals_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Spintervals.NewIntervalDialog");
+                xamlMember = new global::Spintervals.Spintervals_XamlTypeInfo.XamlMember(this, "Intensity", "Int32");
+                xamlMember.Getter = get_2_NewIntervalDialog_Intensity;
+                xamlMember.Setter = set_2_NewIntervalDialog_Intensity;
+                break;
+            }
             return xamlMember;
         }
     }

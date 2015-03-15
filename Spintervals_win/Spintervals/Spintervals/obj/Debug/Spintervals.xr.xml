@@ -3,6 +3,9 @@
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="Height" />
     <RootPropertyPathName Name="Width" />
+    <RootPropertyPathName Name="IntervalName" />
+    <RootPropertyPathName Name="Color" />
+    <RootPropertyPathName Name="SongPositionString" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application">
@@ -21,9 +24,10 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Flyout" />
       <RootProperty Name="Style" />
       <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
@@ -36,6 +40,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Template" />
+      <RootProperty Name="HorizontalContentAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.FrameworkElement">
       <RootProperty Name="MinHeight" />
@@ -49,6 +54,9 @@
       <RootProperty Name="Style" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Minimum" />
+      <RootProperty Name="Maximum" />
+      <RootProperty Name="SnapsTo" />
       <RootEvent Name="ValueChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.UIElement">
@@ -71,6 +79,7 @@
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Visibility" />
       <RootProperty Name="VerticalAlignment" />
+      <RootEvent Name="Holding" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumn" />
@@ -144,6 +153,9 @@
       <RootProperty Name="Fill" />
       <RootProperty Name="Stroke" />
       <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Primitives.TickBar">
       <RootProperty Name="Fill" />
@@ -201,7 +213,6 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MediaElement">
       <RootProperty Name="Name" />
-      <RootProperty Name="Source" />
       <RootProperty Name="AudioCategory" />
       <RootProperty Name="AutoPlay" />
       <RootEvent Name="MediaOpened" />
@@ -216,15 +227,42 @@
       <RootProperty Name="Height" />
       <RootEvent Name="SizeChanged" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Spintervals.NewIntervalDialog" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
       <RootProperty Name="Name" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Items" />
+      <RootProperty Name="ItemContainerStyle" />
+      <RootProperty Name="ItemTemplate" />
+      <RootEvent Name="SelectionChanged" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ListBoxItem">
-      <RootProperty Name="HorizontalContentAlignment" />
-      <RootProperty Name="Content" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBoxItem" />
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
     </RootType>
     <RootType FullName="Spintervals.MainPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="SelectedIndex" />
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
+      <RootProperty Name="Content" />
+    </RootType>
   </Roots.RootTypes>
 </Roots>

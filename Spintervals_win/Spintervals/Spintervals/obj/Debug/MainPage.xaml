@@ -16,7 +16,8 @@
                 <Setter Property="FontFamily" Value="Segoe WP"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
             </Style.Setters>
-        </Style>
+        </Style> 
+        
         <Style TargetType="TextBlock" x:Name="SongTitleFont">
             <Style.Setters>
                 <Setter Property="FontWeight" Value="Thin"/>
@@ -65,14 +66,36 @@
             
         
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="5,10,5,10">
-            <ListBox Name="IntervalListView" Background="Transparent">
-                <ListBoxItem HorizontalContentAlignment="Stretch">
+            <ListBox x:ConnectionId='6' Name="IntervalListView" Background="Transparent"                                                      >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:ConnectionId='7'                                   >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding SongPositionString}" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding IntervalName}" Style="{StaticResource IntervalListFont}" Grid.Column="1" TextAlignment="Right">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{Binding Color}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                        
+                </ListBox.ItemTemplate>
+                <!--<ListBoxItem HorizontalContentAlignment="Stretch">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Interval 1" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                        <TextBlock Text="[0:00]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
                         <TextBlock Text="Climb" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
                 </ListBoxItem>
@@ -82,7 +105,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Interval 2" Foreground="Red" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                        <TextBlock Text="[1:06]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
                         <TextBlock Text="Sprint" Foreground="Red" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
                 </ListBoxItem>
@@ -92,7 +115,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Interval 3" Foreground="Lime" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                        <TextBlock Text="[2:20]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
                         <TextBlock Text="Standing Climb" Foreground="Lime" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
                 </ListBoxItem>
@@ -102,7 +125,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Interval 4" Foreground="Blue" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                        <TextBlock Text="[3:30]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
                         <TextBlock Text="Rest" Foreground="Blue" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
                 </ListBoxItem>
@@ -112,17 +135,23 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Interval 5" Foreground="Yellow" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                        <TextBlock Text="[4:42]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
                         <TextBlock Text="Climb" Foreground="Yellow" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
-                </ListBoxItem>
+                </ListBoxItem>-->
             </ListBox>
         </ScrollViewer>
 
-        <Button Name="AddIntervalButton" Content="+ Add Interval" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10"/>
+        <Button x:ConnectionId='1' Name="AddIntervalButton" Content="+ Add Interval" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10" Height="40"                                >
+            <Button.Flyout>
+                <Flyout x:Name="FlyoutNewInterval">
+                    <local:NewIntervalDialog x:Name="DialogNewInterval"/>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
 
 
-        <MediaElement x:ConnectionId='1' Source="Assets/Muse - Psycho.mp3" AudioCategory="BackgroundCapableMedia" Name="songMediaElement" Grid.Row="2" AutoPlay="False"                                           />
+        <MediaElement x:ConnectionId='2' AudioCategory="BackgroundCapableMedia" Name="songMediaElement" Grid.Row="2" AutoPlay="False"                                           />
         <Grid Grid.Row="3" Margin="25,0" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -133,8 +162,8 @@
                 <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Canvas x:ConnectionId='3' Grid.ColumnSpan="3" Grid.Row="0"  Name="IntervalCanvas"                                          Height="100"/>
-            <Slider x:ConnectionId='4' Name="timelineSlider" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MusicSlider}"                                            FontFamily="Global User Interface" VerticalAlignment="Center"/>
+            <Canvas x:ConnectionId='4' Grid.ColumnSpan="3" Grid.Row="0"  Name="IntervalCanvas"                                          Height="100"/>
+            <Slider x:ConnectionId='5' Name="timelineSlider" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MusicSlider}"                                            FontFamily="Global User Interface" VerticalAlignment="Center"/>
             <TextBlock Text="0:00" Grid.Row="1" Grid.Column="0" Name="PositionTextBlock" VerticalAlignment="Center" Margin="0,10,0,0"/>
             <TextBlock Text="Psycho by Muse" Grid.Row="1" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Margin="0,25,0,0" FontFamily="Segoe WP" FontWeight="Thin"/>
             <TextBlock Text="3:33" Grid.Row="1" Grid.Column="2" TextAlignment="Right" Name="DurationTextBlock" VerticalAlignment="Center" Margin="0,10,0,0"/>
@@ -150,7 +179,7 @@
             <Button HorizontalAlignment="Center" Grid.Column="0" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
                 <Image Source="Images/rew.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
             </Button>
-            <Button x:ConnectionId='2' HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource ButtonStyle1}" Width="55" Height="55" Name="PlayButton"                         >
+            <Button x:ConnectionId='3' HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource ButtonStyle1}" Width="55" Height="55" Name="PlayButton"                         >
                 <Image Source="Images/play.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
             </Button>
             <Button HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
