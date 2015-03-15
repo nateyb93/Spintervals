@@ -36,7 +36,7 @@
             android:textSize="10dp"/>
         <TextView android:layout_width="fill_parent"
             android:layout_height="10dp"
-            android:gravity="right"rhy
+            android:gravity="right"
             android:text="3:33"
             android:textSize="10dp"/>
     </LinearLayout>
