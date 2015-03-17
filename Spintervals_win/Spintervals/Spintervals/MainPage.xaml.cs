@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.System.Threading;
 using Windows.UI;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,11 +32,13 @@ namespace Spintervals
     {
         private bool _isPlaying = false;
 
-        private bool _intervalTapped = false;
+        private bool _wasTapped = true;
 
         private SongData _currentSong;
 
         private DispatcherTimer _timer;
+
+        private DispatcherTimer _mediaPositionChangedTimer;
 
         public MainPage()
         {
@@ -62,28 +69,61 @@ namespace Spintervals
         }
 
         /// <summary>
+        /// Initializes the timer that checks the position 
+        /// </summary>
+        private void _initMediaPositionChangedTimer()
+        {
+            _mediaPositionChangedTimer = new DispatcherTimer();
+            _mediaPositionChangedTimer.Interval = TimeSpan.FromMilliseconds(200);
+            _mediaPositionChangedTimer.Tick += _mediaPositionChangedTimer_Tick;
+        }
+
+
+        /// <summary>
         /// Event handler for timer's tick event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void _timer_Tick(object sender, object e)
         {
+
+        }
+
+        private void sendToast(int index)
+        {
+            ToastTemplateType toastTemplate = ToastTemplateType.ToastText01;
+            XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
+
+            XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
+            toastTextElements[0].AppendChild(toastXml.CreateTextNode(_currentSong.IntervalQueues[index].IntervalName));
+
+            IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+            ((XmlElement)toastNode).SetAttribute("launch", "{\"type\":\"toast\",\"param1\":\"12345\",\"param2\":\"67890\"}");
+            ToastNotification toast = new ToastNotification(toastXml);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+
+        /// <summary>
+        /// Tick event for positionChanged timer check
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void _mediaPositionChangedTimer_Tick(object sender, object e)
+        {
             timelineSlider.Value = songMediaElement.Position.TotalSeconds;
             PositionTextBlock.Text =
                 songMediaElement.Position.Minutes.ToString("0") + ":" + songMediaElement.Position.Seconds.ToString("00");
 
-            for (int i = 0; i < _currentSong.IntervalQueues.Count; i++)
+            int pos = (int)songMediaElement.Position.TotalSeconds;
+            List<Interval> its = _currentSong.IntervalQueues;
+            for (int i = 0; i < its.Count; i++)
             {
-                Interval it = _currentSong.IntervalQueues[i];
-                if(i != _currentSong.IntervalQueues.Count - 1)
+                if (pos == its[i].SongPosition)
                 {
-                    Interval nextIt = _currentSong.IntervalQueues[i + 1];
-                    if (songMediaElement.Position.TotalSeconds >= it.SongPosition
-                        && songMediaElement.Position.TotalSeconds < nextIt.SongPosition)
-                    {
-                        _intervalTapped = false;
-                        IntervalListView.SelectedIndex = i;
-                    }
+                    _wasTapped = false;
+                    IntervalListView.SelectedIndex = i;
+                    _wasTapped = true;
                 }
             }
         }
@@ -126,12 +166,11 @@ namespace Spintervals
                 if(i == _currentSong.IntervalQueues.Count - 1)
                 {
                     int intensity = iv.Intensity;
-                    while (pos < IntervalCanvas.ActualWidth)
-                    {
-                        double h = IntervalCanvas.ActualHeight * ((double)intensity / 20.0);
-                        DrawRect(pos, 2, h, iv.Color);
-                        pos += 3;
-                    }
+                    
+                    double h = IntervalCanvas.ActualHeight * ((double)intensity / 20.0);
+                    double w = (int)(IntervalCanvas.ActualWidth - pos);
+                    DrawRect(pos, w, h, iv.Color);
+                    pos += (int)w;
                 }
 
                 else
@@ -141,12 +180,12 @@ namespace Spintervals
                         * IntervalCanvas.ActualWidth;
 
                     int intensity = iv.Intensity;
-                    while (pos < xLim)
-                    {
-                        double h = IntervalCanvas.ActualHeight * ((double)intensity / 20);
-                        DrawRect(pos, 2, h, iv.Color);
-                        pos += 3;
-                    }
+                    double h = IntervalCanvas.ActualHeight * ((double)intensity / 20);
+                    double w = xLim - pos;
+                    DrawRect(pos, w, h, iv.Color);
+
+                    pos += (int)w;
+                    
                 }
                     
             }
@@ -208,7 +247,7 @@ namespace Spintervals
         /// <param name="y">vertical position of rectanlge</param>
         /// <param name="w">width of rectangle</param>
         /// <param name="h">height of rectangle</param>
-        private void DrawRect(int x, int w, double h, Color c)
+        private void DrawRect(int x, double w, double h, Color c)
         {
             Rectangle rect = new Rectangle();
             Canvas.SetLeft(rect, x);
@@ -248,6 +287,9 @@ namespace Spintervals
             
         }
 
+        /// <summary>
+        /// Handles all the actions tied to pausing the media
+        /// </summary>
         private void PauseMedia()
         {
             Image i = new Image();
@@ -258,8 +300,12 @@ namespace Spintervals
             _isPlaying = false;
             songMediaElement.Pause();
             _timer.Stop();
+            _mediaPositionChangedTimer.Stop();
         }
 
+        /// <summary>
+        /// Handles all the actions tied to playing the media
+        /// </summary>
         private void PlayMedia()
         {
             Image i = new Image();
@@ -270,6 +316,7 @@ namespace Spintervals
             _isPlaying = true;
             songMediaElement.Play();
             _timer.Start();
+            _mediaPositionChangedTimer.Start();
         }
 
         /// <summary>
@@ -331,19 +378,29 @@ namespace Spintervals
         {
             _initSlider();
             _initTimer();
+            _initMediaPositionChangedTimer();
             DrawRandomLines();
         }
 
         private void AddIntervalButton_Click(object sender, RoutedEventArgs e)
         {
+            DialogNewInterval.SelectIntervalName();
             PauseMedia();
         }
 
         private void IntervalListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (IntervalListView.SelectedIndex != -1)
+            if (IntervalListView.SelectedIndex == -1)
             {
-                Interval i = _currentSong.IntervalQueues[IntervalListView.SelectedIndex];
+                return;
+            }
+
+            Interval i = _currentSong.IntervalQueues[IntervalListView.SelectedIndex];
+            if (!_wasTapped)
+            {
+                sendToast(IntervalListView.SelectedIndex);
+            } else if (_wasTapped)
+            {
                 songMediaElement.Position = TimeSpan.FromSeconds(i.SongPosition);
             }
         }
@@ -379,6 +436,17 @@ namespace Spintervals
             IntervalListView.ItemsSource = null;
             IntervalListView.ItemsSource = _currentSong.IntervalQueues;
             _redraw();
+        }
+
+        /// <summary>
+        /// Fired when the song media ends
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void songMediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            timelineSlider.Value = 0.0;
+            PauseMedia();
         }
 
     }

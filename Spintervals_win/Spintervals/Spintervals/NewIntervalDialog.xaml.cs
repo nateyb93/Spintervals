@@ -79,7 +79,7 @@ namespace Spintervals
 
         public void ClearData()
         {
-            IntervalNameTextBox.Text = "";
+
         }
 
         private Color _getColor()
@@ -105,6 +105,11 @@ namespace Spintervals
         {
             if (IntensityTextBlock != null)
                 IntensityTextBlock.Text = "Intensity: " + IntensitySlider.Value;
+        }
+
+        public void SelectIntervalName()
+        {
+            IntervalNameTextBox.SelectAll();
         }
     }
 }

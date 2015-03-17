@@ -86,7 +86,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Slider x:ConnectionId='1' Grid.Column="0" Name="IntensitySlider" Minimum="1" Maximum="20" SnapsTo="StepValues"                                            />
-            <TextBlock Grid.Column="1" Name="IntensityTextBlock" Text="Intensity: " FontSize="20" FontFamily="Segoe WP" FontWeight="Light" VerticalAlignment="Center" Margin="15,-15,0,0"/>
+            <TextBlock Grid.Column="1" Name="IntensityTextBlock" Text="Intensity: 0" FontSize="20" FontFamily="Segoe WP" FontWeight="Light" VerticalAlignment="Center" Margin="15,-15,0,0"/>
         </Grid>
         
         <Grid Grid.Row="4">

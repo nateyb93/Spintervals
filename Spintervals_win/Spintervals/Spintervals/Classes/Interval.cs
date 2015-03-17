@@ -27,6 +27,7 @@ namespace Spintervals
 
 
         private int _songPosition;
+
         /// <summary>
         /// Song position in seconds
         /// </summary>
@@ -39,18 +40,21 @@ namespace Spintervals
             set
             {
                 _songPosition = value;
+                
             }
         }
 
+        private string _songPositionString;
         public string SongPositionString
         {
             get
             {
                 int min = _songPosition / 60;
-                int sec = _songPosition & 60;
-                return "[" + min.ToString("0") + ":" + sec.ToString("00") + "]";
+                int sec = _songPosition % 60;
+                _songPositionString = "[" + min.ToString("0") + ":" + sec.ToString("00") + "]";
+                return _songPositionString;
             }
-        }
+        }   
 
 
         private string _intervalName;

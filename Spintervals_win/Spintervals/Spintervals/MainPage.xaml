@@ -53,138 +53,91 @@
             </Style.Setters>
         </Style>
     </Page.Resources>
+    <Pivot>
+        <PivotItem Header="edit track">
+            <Grid Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Grid.Row="0" Grid.ColumnSpan="2" Margin="5,10,5,10">
+                    <ListBox Name="IntervalListView" Background="Transparent" SelectionChanged="IntervalListView_SelectionChanged" >
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Holding="IntervalListView_Holding">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding SongPositionString}" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
+                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding IntervalName}" Style="{StaticResource IntervalListFont}" Grid.Column="1" TextAlignment="Right">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="{Binding Color}" />
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+
+                <Button Name="AddIntervalButton" Content="+ Add Interval" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10" Height="40" Click="AddIntervalButton_Click">
+                    <Button.Flyout>
+                        <Flyout x:Name="FlyoutNewInterval">
+                            <local:NewIntervalDialog x:Name="DialogNewInterval"/>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+
+
+                <MediaElement AudioCategory="BackgroundCapableMedia" Name="songMediaElement" Grid.Row="2" AutoPlay="False" MediaOpened="songMediaElement_MediaOpened" MediaEnded="songMediaElement_MediaEnded"/>
+                <Grid Grid.Row="2" Margin="25,0" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas Grid.ColumnSpan="3" Grid.Row="0"  Name="IntervalCanvas" SizeChanged="IntervalCanvas_SizeChanged" Height="100"/>
+                    <Slider Name="timelineSlider" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MusicSlider}" ValueChanged="timelineSlider_ValueChanged" FontFamily="Global User Interface" VerticalAlignment="Center"/>
+                    <TextBlock Text="0:00" Grid.Row="1" Grid.Column="0" Name="PositionTextBlock" VerticalAlignment="Center" Margin="0,10,0,0"/>
+                    <TextBlock Text="Psycho by Muse" Grid.Row="1" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Margin="0,25,0,0" FontFamily="Segoe WP" FontWeight="Thin"/>
+                    <TextBlock Text="3:33" Grid.Row="1" Grid.Column="2" TextAlignment="Right" Name="DurationTextBlock" VerticalAlignment="Center" Margin="0,10,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="4" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button HorizontalAlignment="Center" Grid.Column="0" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
+                        <Image Source="Images/rew.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource ButtonStyle1}" Width="55" Height="55" Name="PlayButton" Click="PlayButton_Click">
+                        <Image Source="Images/play.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
+                        <Image Source="Images/ff.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </PivotItem>
+        
+    </Pivot>
     
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="edit track" FontSize="72" Style="{StaticResource TitleFont}" Grid.Row="0" Margin="0,0,0,20"/>
-            
-        
-        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="5,10,5,10">
-            <ListBox Name="IntervalListView" Background="Transparent" SelectionChanged="IntervalListView_SelectionChanged" >
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Holding="IntervalListView_Holding">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding SongPositionString}" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
-                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding IntervalName}" Style="{StaticResource IntervalListFont}" Grid.Column="1" TextAlignment="Right">
-                                <TextBlock.Foreground>
-                                    <SolidColorBrush Color="{Binding Color}" />
-                                </TextBlock.Foreground>
-                            </TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                        
-                </ListBox.ItemTemplate>
-                <!--<ListBoxItem HorizontalContentAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="[0:00]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
-                        <TextBlock Text="Climb" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem HorizontalContentAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="[1:06]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
-                        <TextBlock Text="Sprint" Foreground="Red" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem HorizontalContentAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="[2:20]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
-                        <TextBlock Text="Standing Climb" Foreground="Lime" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem HorizontalContentAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="[3:30]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
-                        <TextBlock Text="Rest" Foreground="Blue" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
-                    </Grid>
-                </ListBoxItem>
-                <ListBoxItem HorizontalContentAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="[4:42]" Foreground="White" Style="{StaticResource IntervalListFont}" Grid.Column="0"/>
-                        <TextBlock Text="Climb" Foreground="Yellow" Style="{StaticResource IntervalListFont}" Grid.Column="1" HorizontalAlignment="Right"/>
-                    </Grid>
-                </ListBoxItem>-->
-            </ListBox>
-        </ScrollViewer>
-
-        <Button Name="AddIntervalButton" Content="+ Add Interval" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10" Height="40" Click="AddIntervalButton_Click">
-            <Button.Flyout>
-                <Flyout x:Name="FlyoutNewInterval">
-                    <local:NewIntervalDialog x:Name="DialogNewInterval"/>
-                </Flyout>
-            </Button.Flyout>
-        </Button>
-
-
-        <MediaElement AudioCategory="BackgroundCapableMedia" Name="songMediaElement" Grid.Row="2" AutoPlay="False" MediaOpened="songMediaElement_MediaOpened"/>
-        <Grid Grid.Row="3" Margin="25,0" VerticalAlignment="Bottom">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Canvas Grid.ColumnSpan="3" Grid.Row="0"  Name="IntervalCanvas" SizeChanged="IntervalCanvas_SizeChanged" Height="100"/>
-            <Slider Name="timelineSlider" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MusicSlider}" ValueChanged="timelineSlider_ValueChanged" FontFamily="Global User Interface" VerticalAlignment="Center"/>
-            <TextBlock Text="0:00" Grid.Row="1" Grid.Column="0" Name="PositionTextBlock" VerticalAlignment="Center" Margin="0,10,0,0"/>
-            <TextBlock Text="Psycho by Muse" Grid.Row="1" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Margin="0,25,0,0" FontFamily="Segoe WP" FontWeight="Thin"/>
-            <TextBlock Text="3:33" Grid.Row="1" Grid.Column="2" TextAlignment="Right" Name="DurationTextBlock" VerticalAlignment="Center" Margin="0,10,0,0"/>
-        </Grid>
-        
-        <Grid Grid.Row="4" Margin="0,10,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-
-            <Button HorizontalAlignment="Center" Grid.Column="0" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
-                <Image Source="Images/rew.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-            </Button>
-            <Button HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource ButtonStyle1}" Width="55" Height="55" Name="PlayButton" Click="PlayButton_Click">
-                <Image Source="Images/play.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-            </Button>
-            <Button HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource ButtonStyle1}" Width="55" Height="55">
-                <Image Source="Images/ff.png" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-            </Button>
-        </Grid>
-    </Grid>
+    
 </Page>
